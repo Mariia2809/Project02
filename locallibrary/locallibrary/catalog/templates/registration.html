@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+
+</head>
+<body>
+    <h1>Добро пожаловать на наш портал</h1>
+<!— Форма для регистрации —>
+    <h2>Регистрация</h2>
+    <form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+    <label for="new_username">Имя пользователя:</label>
+    <input type="text" id="new_username" name="new_username">
+
+
+<label for="new_password">Пароль:</label>
+<input type="password" id="new_password" name="new_password">
+
+
+<!— Другие поля для регистрации —>
+<button type="submit">Зарегистрироваться</button>
+</form>
+</body>
+</html>

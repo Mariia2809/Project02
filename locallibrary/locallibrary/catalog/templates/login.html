@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+
+</head>
+<body>
+    <h1>Добро пожаловать на наш портал</h1>
+
+<!— Форма для входа —>
+    <h2>Вход</h2>
+    <form method="post" action="{% url 'index' %}">
+        {% csrf_token %}
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username">
+
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password">
+
+
+        <button type="submit">Войти</button>
+    </form>
+</form>
+</body>
+</html>
