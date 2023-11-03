@@ -25,7 +25,7 @@ class Application(models.Model):
     ]
     category = models.ForeignKey(Category, help_text='Выберите категорию', on_delete=models.CASCADE)
     photo_file = models.ImageField(max_length=254, upload_to='image/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'bmp'])])
-    status = models.CharField(max_length=254, verbose_name='Статус', choises=STATUS_CHOICES, default='N')
+    status = models.CharField(max_length=254, verbose_name='Статус', choices=STATUS_CHOICES, default='N')
     date = models.DateTimeField(verbose_name='Дата добавления')
     user = models.ForeignKey(CastomUser, verbose_name='Пользователь', on_delete=models.CASCADE)
 
