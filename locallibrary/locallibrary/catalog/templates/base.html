@@ -19,12 +19,12 @@
         <nav>
             <p><a href="{% url 'index' %}">Главная</a></p>
             {% if user.is_authenticated %}
-                <p><a href="">Личный кабинет</a></p>
-            <p><a href="">Выход</a></p>
-       {% else %}
-            <p><a href="{% url 'login' %}">Вход</a></p>
-       {% endif %}
-            <p><a href="{% url 'registration'%}?next={{request.path}}">Регистрация</a></p>
+            <p><a href="{% url 'profil' %}">Личный кабинет</a></p>
+                <p><a href="{% url 'logout' %}?next={{request.path}}">Выход</a></p>
+            {% else %}
+                <p><a href="{% url 'login' %}?next={{request.path}}">Вход</a></p>
+                <p><a href="{% url 'register'%}?next={{request.path}}">Регистрация</a></p>
+            {% endif %}
        </nav>
     </div>
 </div>

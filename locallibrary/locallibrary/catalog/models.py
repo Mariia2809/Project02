@@ -1,6 +1,8 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.validators import FileExtensionValidator
-
+from django.core.exceptions import ValidationError
+from django.urls import reverse
 
 
 class Category (models.Model):
@@ -8,7 +10,7 @@ class Category (models.Model):
     def __str__(self):
         return self.name
 
-class CastomUser (models.Model):
+class CastomUser(AbstractUser):
     username = models.CharField(max_length=254, verbose_name='Лoгин', unique=True, blank=False)
     email = models.CharField(max_length=254, verbose_name='Пoчтa', unique=True, blank=False)
     password = models.CharField(max_length=254, verbose_name='Пapoль', blank=False)
@@ -28,5 +30,4 @@ class Application(models.Model):
     status = models.CharField(max_length=254, verbose_name='Статус', choices=STATUS_CHOICES, default='N')
     date = models.DateTimeField(verbose_name='Дата добавления')
     user = models.ForeignKey(CastomUser, verbose_name='Пользователь', on_delete=models.CASCADE)
-
 
