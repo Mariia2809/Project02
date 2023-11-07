@@ -132,5 +132,9 @@ LOGOUT_REDIRECT_URL='/'
 
 LOGIN_REDIRECT_URL='/'
 
+
 AUTH_USER_MODEL = 'catalog.CastomUser'
+
+MEDIA_URL = 'image/'
+
 

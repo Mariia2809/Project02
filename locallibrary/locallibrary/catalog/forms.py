@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from .models import CastomUser
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django import forms
@@ -8,6 +8,18 @@ from .validators import validate_pasword_len
 
 
 class RegisterUserForm(forms.ModelForm):
+    first_name = forms.CharField(
+        label='Имя',
+        validators=[RegexValidator('^[а-яА-Я- -]+$',
+                                   message="Разрешены только кириллица, дефис и пробелы")],
+        error_messages={'required': 'Обязательное поле', }
+    )
+    last_name = forms.CharField(
+        label='Фамилия',
+        validators=[RegexValidator('^[а-яА-Я- -]+$',
+                                   message="Разрешены только кириллица, дефис и пробелы")],
+        error_messages={'required': 'Обязательное поле', }
+    )
     username = forms.CharField(label='Логин',
                                 validators=[RegexValidator('^[a-zA-Z0-9-]+$',
                                                                 message = "Разрешены только латиница, цифры или тире")],
@@ -51,8 +63,8 @@ class RegisterUserForm(forms.ModelForm):
             user.save()
         return user
     class Meta:
-        model = User
-        fields = ('username', 'email', 'password', 'password2', 'rules')
+        model = CastomUser
+        fields = ('first_name', 'last_name', 'username', 'email', 'password', 'password2', 'rules')
 
 
 

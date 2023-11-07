@@ -13,20 +13,20 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-<div>
-    <div>{% block content %}{% endblock %}</div>
-    <div class="sidebar-nav">
+<div style="display: flex">
+    <div class="sidebar-nav" style="margin: 20px 0 0 20px">
         <nav>
             <p><a href="{% url 'index' %}">Главная</a></p>
             {% if user.is_authenticated %}
             <p><a href="{% url 'profil' %}">Личный кабинет</a></p>
-                <p><a href="{% url 'logout' %}?next={{request.path}}">Выход</a></p>
+                <p><a href="{% url 'logout' %}">Выход</a></p>
             {% else %}
-                <p><a href="{% url 'login' %}?next={{request.path}}">Вход</a></p>
-                <p><a href="{% url 'register'%}?next={{request.path}}">Регистрация</a></p>
+                <p><a href="{% url 'login' %}">Вход</a></p>
+                <p><a href="{% url 'register'%}">Регистрация</a></p>
             {% endif %}
        </nav>
     </div>
+    <div style="margin-left: 50px">{% block content %}{% endblock %}</div>
 </div>
 </body>
 </html>
