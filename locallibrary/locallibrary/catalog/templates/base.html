@@ -19,14 +19,13 @@
             <p><a href="{% url 'index' %}">Главная</a></p>
             {% if user.is_authenticated %}
             <p><a href="{% url 'profil' %}">Личный кабинет</a></p>
-                <p><a href="{% url 'requests' %}">Мои заказы</a></p>
+                <p><a href="{% url 'request' %}">Мои заказы</a></p>
                  <p><a href="{% url 'deleting' %}">Корзина</a></p>
                 <p><a href="{% url 'logout' %}">Выход</a></p>
             {% else %}
                 <p><a href="{% url 'login' %}">Вход</a></p>
                 <p><a href="{% url 'register'%}">Регистрация</a></p>
             {% endif %}
-
        </nav>
     </div>
     <div style="margin-left: 50px">{% block content %}{% endblock %}</div>

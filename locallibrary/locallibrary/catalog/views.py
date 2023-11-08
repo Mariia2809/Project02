@@ -74,12 +74,12 @@ class MyPostListViews(generic.ListView):
     template_name = 'request.html'
 
     def get_queryset(self):
-        return Application.object.filter(user=self.recquest.user).object_by('-date')
+        return Application.object.filter(user=self.request.user).object_by('-date')
 
 
 class ApplicationCreate(LoginRequiredMixin, CreateView):
     model = Application
-    fields = ['name', 'description', 'category', 'photo_file']
+    fields = ['title', 'category', 'photo_file']
     template_name = 'request.html'
     success_url = reverse_lazy('request')
 
@@ -87,7 +87,7 @@ class ApplicationCreate(LoginRequiredMixin, CreateView):
 def request_catalog(request):
     return render(request, "request.html")
 
-class personalarea ():
+
 
 
 

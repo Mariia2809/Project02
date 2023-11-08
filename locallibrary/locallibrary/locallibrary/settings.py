@@ -126,13 +126,13 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-runserver.default_port ='9000'
+runserver.default_port ='8080'
 
 LOGOUT_REDIRECT_URL='/'
 
 LOGIN_REDIRECT_URL='/'
 
-
+REQUEST_REDIRECT_URL='/request/'
 
 AUTH_USER_MODEL = 'catalog.CastomUser'
 

@@ -19,10 +19,8 @@ urlpatterns = [
     path('logout/', BBLogoutView.as_view(), name='logout'),
     path('profil/', ApplicationsByUserListView.as_view(), name='profil'),
 
-    path('requests/', views.ApplicationCreate.as_views(), name='request'),
+    path('request/', views.ApplicationCreate.as_view(), name='request'),
     path('creating/', views.MyPostListViews.as_view(), name='creating'),
     path('deleting/', views.ApplicationDelete.as_view(), name='deleting'),
-    path('personalarea/', views.personalarea, name='personalarea')
-
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
