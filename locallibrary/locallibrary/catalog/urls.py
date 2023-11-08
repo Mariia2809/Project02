@@ -1,5 +1,7 @@
+import about as about
 from django.conf import settings
 from django.conf.urls.static import static
+
 from django.urls import path
 from . import views
 from .views import validate_username
@@ -16,5 +18,11 @@ urlpatterns = [
     path('validate_username', validate_username, name='validate_username'),
     path('logout/', BBLogoutView.as_view(), name='logout'),
     path('profil/', ApplicationsByUserListView.as_view(), name='profil'),
+
+    path('requests/', views.ApplicationCreate.as_views(), name='request'),
+    path('creating/', views.MyPostListViews.as_view(), name='creating'),
+    path('deleting/', views.ApplicationDelete.as_view(), name='deleting'),
+    path('personalarea/', views.personalarea, name='personalarea')
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
