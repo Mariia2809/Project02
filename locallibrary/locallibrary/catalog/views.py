@@ -1,3 +1,5 @@
+from urllib.request import Request
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -9,6 +11,8 @@ from django.views import generic
 from django.views.generic import CreateView, DeleteView
 from .forms import RegisterUserForm
 from .models import Application
+from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -61,12 +65,12 @@ class ApplicationsByUserListView(LoginRequiredMixin, generic.ListView):
         return Application.objects.filter(user=self.request.user)
 
 
-
-class ApplicationDelete(DeleteView):
+class ApplicationDelete(ApplicationListView):
     model = Application
     context_object_name = 'application'
-    template_name = 'delete.html'
+    template_name = 'deleting.html'
     success_url = reverse_lazy('request')
+
 
 class MyPostListViews(generic.ListView):
     model = Application
@@ -88,10 +92,12 @@ def request_catalog(request):
     return render(request, "request.html")
 
 
-
-
-
-
-
+def add_request(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        description = request.POST['description']
+        request.objects.create(title=title, description=description)
+        return redirect('list_requests')
+    return render(request, 'request.html')
 
 
