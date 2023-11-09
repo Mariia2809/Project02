@@ -1,27 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Мои заявки</title>
-</head>
-    <body>
-    {% if order_list %}
-    <ol>
-        {% for order in order_list %}
-            <li>
-                {{ order.date }} {{ order.status_verbose }})
-                {% if order.iteminorder_set.all %}
-                    <ul>
-                        {% for item in order.iteminorder_set.all %}
-                            <li>{{item.product.name}} | Количество : {{item.count }} |
-                                Стоимость: {{item.price }} </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ol>
+
+<h1>Мои Заказы {{ user }}  </h1>
+<a href="{% url 'profil'%}">Личный кабинет</a>
+{% if application %}
+    {% for application in applications %}
+        <h2>{{application.title}}</h2>
+        <p>{{application.date}}</p>
+        <p>{{application.get_status_display}}</p>
+        <p>{{application.category}}</p>
+        <img src="{{ application.photo_file.url }}">
+<a href ="{% url 'deleting' i.id %}">Удалить</a><br><br>
+    {% endfor %}
 {% else %}
-    <p>У вас пока нет заказов</p>
+    <p>У вас нет заявок</p>
 {% endif %}
-    </body>
+
+
+

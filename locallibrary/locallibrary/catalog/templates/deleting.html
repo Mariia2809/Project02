@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% block content%} 
 
-</body>
-</html>
+<h1>Удалить заявку</h1>
+{% if application.get_status_display == 'Новая'%}
+<p>Вы точно хотите удалить заявку: {{application.title}}</p>
+    <form action="" method="POST"> 
+    {% csrf_token %} 
+    <input type="submit" action="" value="Да, удалить"> 
+    </form> 
+{%else%} 
+<p>Вы не можете удалить</p> 
+{% endif %} 
+{% endblock%}
+
+
+
