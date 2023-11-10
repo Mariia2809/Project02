@@ -5,7 +5,7 @@ from django.db import models
 from django.core.validators import FileExtensionValidator
 from django.urls import reverse
 from django.utils import timezone
-
+from django.shortcuts import render, redirect
 
 class Category (models.Model):
     name = models.CharField(max_length=100, help_text="Введите категории")
@@ -42,7 +42,12 @@ class Application(models.Model):
     user = models.ForeignKey(CastomUser, verbose_name='Пользователь', on_delete=models.CASCADE)
 
     def get_absolute_url(self):
-        return reverse('application_leist', args=[str(self.id)])
+        return reverse('application', args=[str(self.id)])
 
     def __str__(self):
         return self.title
+
+
+
+    def __str__(self):
+        return f'{self.name} ({self.date})'
