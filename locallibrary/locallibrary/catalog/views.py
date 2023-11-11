@@ -77,6 +77,13 @@ class ApplicationDelete(ApplicationListView):
     template_name = 'deleting.html'
     success_url = reverse_lazy('request')
 
+    def delete_application(self, pk):
+        application = Application.objects.filter(user=self.request.user, pk=pk)
+
+        if application:
+            application.delete()
+        return redirect('request')
+
 
 class MyPostListViews(generic.ListView):
     model = Application
@@ -134,12 +141,20 @@ class CategoryView(generic.ListView):
     model = Category
     template_name = 'category.html'
     context_object_name = 'category'
+    success_url = reverse_lazy('category')
+
 
 class CategoryDelete(DeleteView):
     model = Category
     context_object_name = 'category'
     template_name = 'category_delete.html'
     success_url = reverse_lazy('category')
+    def delete_application(self, pk):
+        category = Category.objects.filter(user=self.request.superuser, pk=pk)
+
+        if category:
+            category.delete()
+        return redirect('category')
 
 class CategoryCreate(CreateView):
     model = Category

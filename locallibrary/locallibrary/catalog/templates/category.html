@@ -1,11 +1,16 @@
 {% extends "base.html" %}
-
-<h1>Категории заявок</h1>
-<a href="{% url 'base'%}">Вернуться обратно</a><br>
-<a href="{% url 'creating_category'%}">Создать</a><br><br>
-{% for ap in category %}
-<ul>
-    <li>{{ap.name}}</li>
-    <a href="{% url 'category_delete' ap.id %}">Удалить</a><br><br>
-</ul>
-{% endfor %}
+{% block content %}
+    <h1>Категории заявок</h1>
+    <a href="{% url 'index' %}">Вернуться обратно</a><br>
+    <a href="{% url 'creating_category'%}">Создать</a><br><br>
+    {% for ap in category %}
+    <ul>
+        <li>{{ap.name}}</li>
+        <a href="{% url 'category_delete' ap.id %}">Удалить</a><br><br>
+    </ul>
+    <ul>
+        <li>{{ap.name}}</li>
+        <a href="{% url 'creating_category' ap.id %}">изменить статус</a>
+    </ul>
+    {% endfor %}
+{% endblock %}

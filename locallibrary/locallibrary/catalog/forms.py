@@ -92,3 +92,4 @@ class ChangeStatusRequest(forms.ModelForm):
                 raise forms.ValidationError("При смене статуса на 'Принято в работу' необходимо указать комментарий")
 
         return cleaned_data
+

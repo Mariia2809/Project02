@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<div style="display: flex">
+
     <div class="sidebar-nav" style="margin: 20px 0 0 20px">
       {% block sidebar %}
         {% if user.is_superuser %}
@@ -48,11 +48,16 @@
             <h1>Список заявок</h1>
             <h2>Количество заявок, находящихся в статусе «Принято в работу»: {{ num_application }}</h2><br>
         {% endif %}
-      {% for ap in application_list %}
-
+      {% for app in application_list %}
         <ul>
-            <p>{{ap.date}} <br> <a> {{ ap.name }}</a><br> ({{ap.category}})<br>({{ap.status}})</p>
-            <img src="{{ ap.photo_file.url}}" width="400px", height="350px"><br>
+            <p>Временная метка:{{ app.date }}</p>
+            <p>Название: {{ app.title }}</p>
+            <p>Описание: {{ app.summary }}</p>
+            <p>Категория: {{ app.category }}</p>
+            <p>Статус: {{ app.get_status_display }}</p>
+<!--            <p>{{ap.date}} <br> <a> {{ ap.name }}</a><br> ({{ap.category}})<br>({{app.get_status_display }})</p>-->
+            <p><img src="{{ ap.photo_file.url}}" style=" width=400px; height=350px"><br></p>
+            <a href ="{% url 'deleting' %}">Удалить</a><br>
             {% if user.is_superuser %}
                 {% if ap.status == 'Новая' %}
                     <a href="{% url 'change_status' ap.id %}">Сменить статус</a>
