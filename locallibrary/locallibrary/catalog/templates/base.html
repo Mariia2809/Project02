@@ -18,7 +18,7 @@
     <div class="sidebar-nav" style="margin: 20px 0 0 20px">
       {% block sidebar %}
         {% if user.is_superuser %}
-            <h2>Страница администратора</h2>
+            <h2>Страница адинистратора</h2>
             <a href="{% url 'admin_base'%}">Просмотр заявок потльзователей</a><br>
             <a href="{% url 'category'%}">Категории</a><br>
             <p><a href="{% url 'profil' %}">Личный кабинет</a></p>
